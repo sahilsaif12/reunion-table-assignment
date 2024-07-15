@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-
+import jsonData from '../data.json'
 
   import {
     MRT_GlobalFilterTextField,
@@ -35,19 +35,20 @@ function MainTable() {
   const [colHeaderGroup, setColHeaderGroup] = useState([])
 
     useEffect(() => {
-      axios.get('https://file.notion.so/f/f/ca71608c-1cc3-4167-857a-24da97c78717/b041832a-ec40-47bb-b112-db9eeb72f678/sample-data.json?id=ce885cf5-d90e-46f3-ab62-c3609475cfb6&table=block&spaceId=ca71608c-1cc3-4167-857a-24da97c78717&expirationTimestamp=1721052000000&signature=cZ3w0ijE322sAa6n5OEAxONS6zD8imze7XMnw5BvyOo&downloadName=sample-data.json')
-      .then(res=>{
-        let data=res.data
+        // console.log(data);
+    //   axios.get('https://file.notion.so/f/f/ca71608c-1cc3-4167-857a-24da97c78717/b041832a-ec40-47bb-b112-db9eeb72f678/sample-data.json?id=ce885cf5-d90e-46f3-ab62-c3609475cfb6&table=block&spaceId=ca71608c-1cc3-4167-857a-24da97c78717&expirationTimestamp=1721052000000&signature=cZ3w0ijE322sAa6n5OEAxONS6zD8imze7XMnw5BvyOo&downloadName=sample-data.json')
+    //   .then(res=>{
+        let data=jsonData
         data.forEach((item)=>{
             item.createdAt=moment(item.createdAt).format('MMMM Do YYYY, h:mm a')
             item.updatedAt=moment(item.updatedAt).format('MMMM Do YYYY, h:mm a')
         });
         setitems(data);
           
-      })
-      .catch(err =>{
-        console.log(err);
-      })
+    //   })
+    //   .catch(err =>{
+        // console.log(err);
+    //   })
     }, [])
     
     const [pagination, setPagination] = useState({
